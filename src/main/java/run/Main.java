@@ -6,41 +6,65 @@ import interfaces.Combustible;
 
 public class Main {
     public static void main(String[] args) {
-        // Crear instancias de cada tipo de vehículo
-        Carro carro = new Carro("Toyota", "Corolla");
-        Moto moto = new Moto("Yamaha", "MT-07");
-        Camion camion = new Camion("Volvo", "FH16", 20.5);
+        // Crear un arreglo polimórfico de Vehiculo
+        Vehiculo[] vehiculos = {
+                new Carro("Toyota", "Corolla"),
+                new Moto("Yamaha", "MT-07"),
+                new Camion("Volvo", "FH16", 20.5),
+                new Carro("Honda", "Civic"),
+                new Moto("Kawasaki", "Ninja")
+        };
 
-        // Probar el método mover() en cada vehículo
-        System.out.println("--- Probando método mover() ---");
-        carro.mover();
-        moto.mover();
-        camion.mover();
+        System.out.println("=== DEMOSTRACIÓN DE POLIMORFISMO CON VEHÍCULOS ===\n");
 
-        System.out.println("\n--- Recargando combustible ---");
-        carro.recargar(40);
-        camion.recargar(100);
-
-        System.out.println("\n--- Probando mover() después de recargar ---");
-        carro.mover();
-        camion.mover();
-
-        System.out.println("\n--- Mostrando tipo de combustible ---");
-        System.out.println("Carro usa: " + carro.getTipoCombustible());
-        System.out.println("Camión usa: " + camion.getTipoCombustible());
-
-        System.out.println("\n--- Métodos específicos de cada subclase ---");
-        carro.abrirMaletero();
-        moto.hacerCaballito();
-        camion.cargarMercancia();
-
-        // Polimorfismo con la interfaz Combustible
-        System.out.println("\n--- Polimorfismo con interfaz Combustible ---");
-        Combustible[] vehiculosCombustible = {carro, camion};
-
-        for (Combustible vehiculo : vehiculosCombustible) {
-            System.out.println("Recargando vehículo que usa " + vehiculo.getTipoCombustible());
-            vehiculo.recargar(10);
+        // Iterar a través del arreglo y llamar al método mover() polimórficamente
+        System.out.println("--- Moviendo todos los vehículos ---");
+        for (Vehiculo vehiculo : vehiculos) {
+            vehiculo.mover();
         }
+
+        System.out.println("\n--- Recargando vehículos con combustible ---");
+        // Identificar y recargar vehículos que implementan Combustible
+        for (Vehiculo vehiculo : vehiculos) {
+            if (vehiculo instanceof Combustible) {
+                Combustible vehiculoCombustible = (Combustible) vehiculo;
+                vehiculoCombustible.recargar(50);
+                System.out.println("Tipo de combustible: " + vehiculoCombustible.getTipoCombustible());
+            }
+        }
+
+        System.out.println("\n--- Moviendo vehículos después de recargar ---");
+        for (Vehiculo vehiculo : vehiculos) {
+            vehiculo.mover();
+        }
+
+        System.out.println("\n--- Invocando métodos específicos de cada tipo ---");
+        // Demostración de downcasting para métodos específicos
+        for (Vehiculo vehiculo : vehiculos) {
+            System.out.print(vehiculo.getMarca() + " " + vehiculo.getModelo() + ": ");
+
+            if (vehiculo instanceof Carro) {
+                ((Carro) vehiculo).abrirMaletero();
+            } else if (vehiculo instanceof Moto) {
+                ((Moto) vehiculo).hacerCaballito();
+            } else if (vehiculo instanceof Camion) {
+                ((Camion) vehiculo).cargarMercancia();
+            }
+        }
+
+        // Estadísticas
+        System.out.println("\n=== ESTADÍSTICAS ===");
+        int carros = 0, motos = 0, camiones = 0;
+
+        for (Vehiculo vehiculo : vehiculos) {
+            if (vehiculo instanceof Carro) carros++;
+            else if (vehiculo instanceof Moto) motos++;
+            else if (vehiculo instanceof Camion) camiones++;
+        }
+
+        System.out.println("Total de vehículos: " + vehiculos.length);
+        System.out.println("Carros: " + carros);
+        System.out.println("Motos: " + motos);
+        System.out.println("Camiones: " + camiones);
     }
 }
