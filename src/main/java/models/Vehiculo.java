@@ -9,5 +9,13 @@ public abstract class Vehiculo {
         this.modelo = modelo;
     }
 
+    public String getMarca() {
+        return marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
     public abstract void mover();
 }
