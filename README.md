@@ -9,9 +9,62 @@
 
 ```mermaid
 classDiagram
-direction LR
-Vehiculo <|-- Carro
-Vehiculo <|-- Moto
-Vehiculo <|-- Camion
-Combustible <|.. Carro
-Combustible <|.. Camion
+    direction LR
+    
+    class Vehiculo {
+        <<abstract>>
+        #String marca
+        #String modelo
+        +Vehiculo(marca, modelo)
+        +getMarca() String
+        +getModelo() String
+        +mover()*
+    }
+    
+    class Combustible {
+        <<interface>>
+        +recargar(cantidad double)*
+        +getTipoCombustible() String*
+    }
+    
+    class Carro {
+        -double nivelCombustible
+        -static final String TIPO_COMBUSTIBLE
+        +Carro(marca, modelo)
+        +mover()
+        +recargar(cantidad double)
+        +getTipoCombustible() String
+        +getNivelCombustible() double
+        +abrirMaletero()
+    }
+    
+    class Moto {
+        +Moto(marca, modelo)
+        +mover()
+        +hacerCaballito()
+    }
+    
+    class Camion {
+        -double capacidadCarga
+        -double nivelCombustible
+        -static final String TIPO_COMBUSTIBLE
+        +Camion(marca, modelo, capacidadCarga)
+        +mover()
+        +recargar(cantidad double)
+        +getTipoCombustible() String
+        +getNivelCombustible() double
+        +getCapacidadCarga() double
+        +cargarMercancia()
+    }
+    
+    class Main {
+        +main(args String[])
+    }
+    
+    Vehiculo <|-- Carro
+    Vehiculo <|-- Moto
+    Vehiculo <|-- Camion
+    Combustible <|.. Carro
+    Combustible <|.. Camion
+    Main --> Vehiculo : usa
+```
