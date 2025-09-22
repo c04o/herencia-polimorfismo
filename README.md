@@ -4,3 +4,14 @@
 - Crea una interfaz `Combustible` con un método `recargar()`. Haz que `Carro` y `Camion` la implementen.
 - En el `main`, genera un arreglo de `Vehiculo` e invoca sus métodos polimórficamente.
 - Entrega esperada: Repositorio con código documentado + un diagrama sencillo de la jerarquía de clases.
+
+## Diagrama de jerarquía de clases
+
+```mermaid
+classDiagram
+direction LR
+Vehiculo <|-- Carro
+Vehiculo <|-- Moto
+Vehiculo <|-- Camion
+Combustible <|.. Carro
+Combustible <|.. Camion
