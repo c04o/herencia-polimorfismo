@@ -1,0 +1,54 @@
+classDiagram
+direction LR
+
+class Vehiculo {
+  <<abstract>>
+  - String marca
+  - String modelo
+  + Vehiculo(String, String)
+  + String getMarca()
+  + String getModelo()
+  + void mover()*
+}
+
+class Moto {
+  + Moto(String, String)
+  + void mover()
+  + void hacerCaballito()
+}
+
+class Carro {
+  - double nivelCombustible
+  - static final String TIPO_COMBUSTIBLE = "Gasolina"
+  + Carro(String, String)
+  + void mover()
+  + void recargar(double)
+  + String getTipoCombustible()
+  + double getNivelCombustible()
+  + void abrirMaletero()
+}
+
+class Camion {
+  - double capacidadCarga
+  - double nivelCombustible
+  - static final String TIPO_COMBUSTIBLE = "Diésel"
+  + Camion(String, String, double)
+  + void mover()
+  + void recargar(double)
+  + String getTipoCombustible()
+  + double getNivelCombustible()
+  + void cargarMercancia()
+  + double getCapacidadCarga()
+}
+
+class Combustible {
+  <<interface>>
+  + void recargar(double)
+  + String getTipoCombustible()
+}
+
+Vehiculo <|-- Carro
+Vehiculo <|-- Moto
+Vehiculo <|-- Camion
+Combustible <|.. Carro
+Combustible <|.. Camion
