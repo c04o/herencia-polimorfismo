@@ -13,44 +13,52 @@ classDiagram
     
     class Vehiculo {
         <<abstract>>
-        -String marca
-        -String modelo
+        #String marca
+        #String modelo
         +Vehiculo(marca, modelo)
-        +mover()*
         +getMarca() String
         +getModelo() String
+        +mover()*
     }
     
     class Combustible {
         <<interface>>
-        +recargar()*
+        +recargar(cantidad double)*
+        +getTipoCombustible() String*
     }
     
     class Carro {
-        -int capacidadCombustible
-        +Carro(marca, modelo, capacidad)
+        -double nivelCombustible
+        -static final String TIPO_COMBUSTIBLE
+        +Carro(marca, modelo)
         +mover()
-        +recargar()
-        +getCapacidadCombustible() int
+        +recargar(cantidad double)
+        +getTipoCombustible() String
+        +getNivelCombustible() double
+        +abrirMaletero()
     }
     
     class Moto {
-        -int cilindrada
-        +Moto(marca, modelo, cilindrada)
+        +Moto(marca, modelo)
         +mover()
-        +getCilindrada() int
+        +hacerCaballito()
     }
     
     class Camion {
         -double capacidadCarga
+        -double nivelCombustible
+        -static final String TIPO_COMBUSTIBLE
         +Camion(marca, modelo, capacidadCarga)
         +mover()
-        +recargar()
+        +recargar(cantidad double)
+        +getTipoCombustible() String
+        +getNivelCombustible() double
         +getCapacidadCarga() double
+        +cargarMercancia()
     }
     
     class Main {
-        +main()
+        +main(args String[])
     }
     
     Vehiculo <|-- Carro
@@ -58,5 +66,5 @@ classDiagram
     Vehiculo <|-- Camion
     Combustible <|.. Carro
     Combustible <|.. Camion
-    Main --> Vehiculo
+    Main --> Vehiculo : usa
 ```
