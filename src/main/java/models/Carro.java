@@ -14,7 +14,7 @@ public class Carro extends Vehiculo implements Combustible {
     @Override
     public void mover() {
         if (nivelCombustible > 0) {
-            System.out.println("El carro " + marca + " " + modelo + " se desplaza por la carretera.");
+            System.out.println("El carro " + marca + " " + modelo + " recorre la ciudad cómodamente con sus pasajeros.");
             nivelCombustible -= 5;
         } else {
             System.out.println("El carro " + marca + " " + modelo + " no puede moverse sin combustible.");

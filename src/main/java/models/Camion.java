@@ -16,10 +16,10 @@ public class Camion extends Vehiculo implements Combustible {
     @Override
     public void mover() {
         if (nivelCombustible > 0) {
-            System.out.println("El camión " + marca + " " + modelo + " transporta carga pesada por la autopista.");
+            System.out.println("El camión " + marca + " " + modelo + " inicia un viaje de larga distancia con carga completa.");
             nivelCombustible -= 10;
         } else {
-            System.out.println("El camión " + marca + " " + modelo + " no puede moverse sin combustible.");
+            System.out.println("El camión " + marca + " " + modelo + " está detenido porque no tiene combustible.");
         }
     }
 
