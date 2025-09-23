@@ -1,3 +1,5 @@
+package run;
+
 import models.Vehiculo;
 import models.Carro;
 import models.Moto;
@@ -24,7 +26,6 @@ public class Main {
         }
 
         System.out.println("\n--- Recargando vehículos con combustible ---");
-        // Identificar y recargar vehículos que implementan Combustible
         for (Vehiculo vehiculo : vehiculos) {
             if (vehiculo instanceof Combustible) {
                 Combustible vehiculoCombustible = (Combustible) vehiculo;
@@ -39,7 +40,6 @@ public class Main {
         }
 
         System.out.println("\n--- Invocando métodos específicos de cada tipo ---");
-        // Demostración de downcasting para métodos específicos
         for (Vehiculo vehiculo : vehiculos) {
             System.out.print(vehiculo.getMarca() + " " + vehiculo.getModelo() + ": ");
 
